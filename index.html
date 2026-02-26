@@ -11,7 +11,6 @@
 <meta property="og:type" content="website">
 
 <style>
-  /* General body and font */
   body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -21,9 +20,8 @@
     overflow-x: hidden;
   }
 
-  /* Header */
   header {
-    padding: 100px 40px 80px;
+    padding: 100px 40px 60px;
     background: url('https://source.unsplash.com/1920x900/?travel,plane') center/cover no-repeat;
     position: relative;
   }
@@ -33,6 +31,16 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.55);
+  }
+
+  #current-date {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    color: #ffdd00;
   }
 
   header h1 {
@@ -93,12 +101,11 @@
     margin-right: 8px;
   }
 
-  /* Features */
   section.features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    padding: 80px 40px;
+    padding: 60px 40px;
     max-width: 1400px;
     margin: auto;
   }
@@ -108,8 +115,16 @@
     padding: 30px 25px;
     border-radius: 15px;
     text-align: left;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.6s ease, transform 0.6s ease;
     cursor: pointer;
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .feature.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .feature:hover {
@@ -118,8 +133,25 @@
     background: rgba(255,255,255,0.2);
   }
 
-  .feature h3 { margin-top: 0; font-size: 1.4rem; }
-  .feature p { font-size: 1rem; line-height: 1.5; }
+  .feature h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+
+  .feature p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .feature h3 a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .feature h3 a:hover {
+    text-decoration: underline;
+  }
 
   footer {
     margin-top: 60px;
@@ -131,7 +163,11 @@
 
   footer a { color: #ddd; text-decoration: underline; }
 
-  /* Desktop-specific enhancements */
+  #click-counter {
+    font-weight: bold;
+    color: #ffdd00;
+  }
+
   @media (min-width: 1600px) {
     header h1 { font-size: 4rem; }
     header p { font-size: 1.5rem; }
@@ -144,6 +180,7 @@
 <body>
 
 <header>
+  <span id="current-date"></span>
   <h1 id="header-title">Find The Cheapest Flights Fast Instantly</h1>
   <p id="header-desc">Compare hundreds of airlines instantly and book your next adventure with confidence.</p>
 
@@ -157,31 +194,32 @@
 </header>
 
 <section class="features">
-  <div class="feature" onclick="window.location='http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885'">
-    <h3 id="feature1-title">🔍 Compare Instantly</h3>
+  <div class="feature" data-link="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">
+    <h3 id="feature1-title"><a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">🔍 Compare Instantly</a></h3>
     <p id="feature1-desc">Search multiple airlines and find the lowest prices in seconds.</p>
   </div>
-  <div class="feature" onclick="window.location='http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885'">
-    <h3 id="feature2-title">💸 Save Money</h3>
+  <div class="feature" data-link="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">
+    <h3 id="feature2-title"><a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">💸 Save Money</a></h3>
     <p id="feature2-desc">Get the best deals and never overpay for flights again.</p>
   </div>
-  <div class="feature" onclick="window.location='http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885'">
-    <h3 id="feature3-title">🌍 Travel Anywhere</h3>
+  <div class="feature" data-link="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">
+    <h3 id="feature3-title"><a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">🌍 Travel Anywhere</a></h3>
     <p id="feature3-desc">Domestic or international, explore destinations worldwide.</p>
   </div>
-  <div class="feature" onclick="window.location='http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885'">
-    <h3 id="feature4-title">📱 Mobile Friendly</h3>
+  <div class="feature" data-link="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">
+    <h3 id="feature4-title"><a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">📱 Mobile Friendly</a></h3>
     <p id="feature4-desc">Works perfectly on any device — book flights on the go.</p>
   </div>
-  <div class="feature" onclick="window.location='http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885'">
-    <h3>🛫 Powered by Skyscanner</h3>
+  <div class="feature" data-link="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">
+    <h3><a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">🛫 Powered by Skyscanner</a></h3>
     <p>We use Skyscanner’s flight search engine to find you the best deals quickly and safely.</p>
   </div>
 </section>
 
 <footer>
   &copy; 2026 Travel Smart. All rights reserved. <br>
-  Flight data powered by <a href="https://www.skyscanner.net" target="_blank">Skyscanner</a>
+  Flight data powered by <a href="https://www.skyscanner.net" target="_blank">Skyscanner</a><br>
+  Clicks so far: <span id="click-counter">0</span>
 </footer>
 
 <script>
@@ -225,14 +263,47 @@
   const texts = translations[lang] || translations['en'];
 
   document.addEventListener("DOMContentLoaded", () => {
+    // Set language texts
     document.documentElement.lang = lang;
     document.getElementById("header-title").textContent = texts.headerTitle;
     document.getElementById("header-desc").textContent = texts.headerDesc;
     document.getElementById("cta-btn").textContent = texts.cta;
 
     texts.features.forEach((feat, index) => {
-      document.getElementById(`feature${index+1}-title`).textContent = feat.title;
+      const featureTitle = document.getElementById(`feature${index+1}-title`).querySelector('a');
+      featureTitle.textContent = feat.title;
       document.getElementById(`feature${index+1}-desc`).textContent = feat.desc;
+    });
+
+    // Scroll fade-in animation
+    const features = document.querySelectorAll('.feature');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    features.forEach(f => observer.observe(f));
+
+    // Update date daily at top
+    const dateEl = document.getElementById('current-date');
+    const today = new Date();
+    dateEl.textContent = `Today: ${today.toDateString()}`;
+
+    // Click counter with localStorage
+    const counterEl = document.getElementById('click-counter');
+    let clickCount = parseInt(localStorage.getItem('clickCount') || 0);
+    counterEl.textContent = clickCount;
+
+    const clickableLinks = document.querySelectorAll('.cta-btn, .feature a, .feature');
+    clickableLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        clickCount++;
+        localStorage.setItem('clickCount', clickCount);
+        counterEl.textContent = clickCount;
+      });
     });
   });
 </script>
