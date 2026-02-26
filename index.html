@@ -1,215 +1,120 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1200">
-<title>Find Cheap Flights with Skyscanner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily + Total Skyscanner Counter</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0f62fe, #001d6c);
-    color: white;
-    text-align: center;
-}
-
-.container {
-    padding: 60px 20px;
-}
-
-/* Updated logo styling */
-.logo {
-    width: 250px;
-    margin-bottom: 40px;
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: #ffcc00; /* bright yellow background */
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* subtle shadow */
-    transition: 0.3s;
-}
-
-.logo:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
-h1, h2 {
-    cursor: pointer;
-}
-
-h1 {
-    font-size: 60px;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
-}
-
-.button {
-    display: inline-block;
-    padding: 20px 50px;
-    margin: 15px;
-    font-size: 26px;
-    font-weight: bold;
-    background-color: #ffcc00;
-    color: #000;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.button:hover {
-    background-color: #ffaa00;
-    transform: scale(1.05);
-}
-
-.counter-box {
-    margin-top: 40px;
-    font-size: 24px;
-    background: rgba(255,255,255,0.15);
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block;
-}
-
-.date {
-    font-size: 20px;
-    margin-top: 15px;
-}
-
-.destinations {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.destinations a {
-    display: block;
-    width: 180px;
-    height: 120px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    background-color: #ffcc00;
-    color: #000;
-    border-radius: 12px;
-    line-height: 120px;
-    transition: 0.3s;
-}
-
-.destinations a:hover {
-    background-color: #ffaa00;
-    transform: scale(1.05);
-}
+    body {
+        font-family: Arial, sans-serif;
+        background: url('your-background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+    #date {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+    #skyscanner {
+        font-size: 3em;
+        font-weight: bold;
+        display: inline-block;
+        margin: 30px auto;
+        padding: 25px 50px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        text-decoration: none;
+        color: white;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+    #skyscanner:hover {
+        transform: scale(1.1);
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .counter {
+        font-size: 1.8em;
+        margin-top: 20px;
+        padding: 15px 25px;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: inline-block;
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<div id="date"></div>
 
-<!-- Skyscanner Logo with white version -->
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" onclick="trackClick()">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Skyscanner_logo_white.svg" alt="Skyscanner Logo">
-</a>
+<a href="#" id="skyscanner" target="_blank">Go to Skyscanner</a>
 
-<h1 id="mainTitle" onclick="trackClick()">🔥 Find The Cheapest Flights Today 🔥</h1>
-<h2 id="subTitle" onclick="trackClick()">Compare Hundreds of Airlines in Seconds</h2>
+<div class="counter">Today's Clicks: <span id="dailyCount">Loading...</span></div>
+<div class="counter">Total Clicks: <span id="totalCount">Loading...</span></div>
 
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" 
-   class="button" 
-   onclick="trackClick()" 
-   target="_blank">
-   SEARCH FLIGHTS NOW
-</a>
-
-<br>
-
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" 
-   class="button" 
-   onclick="trackClick()" 
-   target="_blank">
-   GET EXCLUSIVE TRAVEL DEALS
-</a>
-
-<div class="destinations" id="destinations">
-   <!-- Destinations will be populated dynamically -->
-</div>
-
-<div class="counter-box">
-    🚀 Total Clicks Today: <span id="clickCount">0</span>
-</div>
-
-<div class="date">
-    📅 Today’s Date: <span id="todayDate"></span>
-</div>
-
-</div>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-// Click counter
-let clicks = 0;
-function trackClick() {
-    clicks++;
-    document.getElementById("clickCount").innerText = clicks;
-    window.open("https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885", "_blank");
-}
+    // ====== FIREBASE CONFIG — replace with your own ======
+    const firebaseConfig = {
+        apiKey: "FIREBASE_API_KEY",
+        authDomain: "FIREBASE_AUTH_DOMAIN",
+        databaseURL: "FIREBASE_DATABASE_URL",
+        projectId: "FIREBASE_PROJECT_ID",
+        storageBucket: "FIREBASE_STORAGE_BUCKET",
+        messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
+        appId: "FIREBASE_APP_ID"
+    };
 
-// Set today's date
-document.getElementById("todayDate").innerText = new Date().toDateString();
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
-// Flight destinations
-const popularDestinations = [
-    "New York", "London", "Paris", "Dubai", "Tokyo",
-    "Bangkok", "Sydney", "Barcelona", "Rome", "Istanbul"
-];
+    // ====== DATE ======
+    const dateElement = document.getElementById('date');
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0]; // YYYY-MM-DD
+    dateElement.textContent = today.toDateString();
 
-const destinationsContainer = document.getElementById("destinations");
-popularDestinations.forEach(dest => {
-    const a = document.createElement("a");
-    a.href = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
-    a.target = "_blank";
-    a.onclick = trackClick;
-    a.innerText = dest;
-    destinationsContainer.appendChild(a);
-});
+    // ====== COUNTER ELEMENTS ======
+    const dailyCountElement = document.getElementById('dailyCount');
+    const totalCountElement = document.getElementById('totalCount');
+    const skyscannerLink = document.getElementById('skyscanner');
 
-// Language conversion based on browser
-const translations = {
-    "es": {
-        mainTitle: "🔥 Encuentra los vuelos más baratos hoy 🔥",
-        subTitle: "Compara cientos de aerolíneas en segundos",
-        button1: "BUSCAR VUELOS AHORA",
-        button2: "OBTENER OFERTAS EXCLUSIVAS"
-    },
-    "fr": {
-        mainTitle: "🔥 Trouvez les vols les moins chers aujourd'hui 🔥",
-        subTitle: "Comparez des centaines de compagnies aériennes en quelques secondes",
-        button1: "RECHERCHER DES VOLS",
-        button2: "OBTENIR DES OFFRES EXCLUSIVES"
-    },
-    "de": {
-        mainTitle: "🔥 Finde die günstigsten Flüge heute 🔥",
-        subTitle: "Vergleiche Hunderte von Airlines in Sekunden",
-        button1: "FLÜGE SUCHEN",
-        button2: "EXKLUSIVE ANGEBOTE"
-    }
-};
+    // ====== DATABASE REFS ======
+    const dailyRef = database.ref('dailyClicks/' + todayStr);
+    const totalRef = database.ref('totalClicks');
 
-const userLang = navigator.language.slice(0,2);
-if(translations[userLang]) {
-    document.getElementById("mainTitle").innerText = translations[userLang].mainTitle;
-    document.getElementById("subTitle").innerText = translations[userLang].subTitle;
-    document.querySelectorAll(".button")[0].innerText = translations[userLang].button1;
-    document.querySelectorAll(".button")[1].innerText = translations[userLang].button2;
-}
+    // ====== LOAD COUNTS ======
+    dailyRef.get().then(snapshot => {
+        dailyCountElement.textContent = snapshot.exists() ? snapshot.val() : 0;
+    });
+    totalRef.get().then(snapshot => {
+        totalCountElement.textContent = snapshot.exists() ? snapshot.val() : 0;
+    });
+
+    // ====== HANDLE CLICK ======
+    skyscannerLink.addEventListener('click', async () => {
+        // Daily increment
+        const dailySnap = await dailyRef.get();
+        let dailyVal = dailySnap.exists() ? dailySnap.val() : 0;
+        dailyVal++;
+        dailyRef.set(dailyVal);
+        dailyCountElement.textContent = dailyVal;
+
+        // Total increment
+        const totalSnap = await totalRef.get();
+        let totalVal = totalSnap.exists() ? totalSnap.val() : 0;
+        totalVal++;
+        totalRef.set(totalVal);
+        totalCountElement.textContent = totalVal;
+
+        // Open Skyscanner
+        window.open("https://www.skyscanner.com", "_blank");
+    });
 </script>
 
 </body>
