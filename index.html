@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -18,10 +18,21 @@ body {
     padding: 60px 20px;
 }
 
+/* Updated logo styling */
 .logo {
     width: 250px;
     margin-bottom: 40px;
     cursor: pointer;
+    padding: 10px 20px;
+    background-color: #ffcc00; /* bright yellow background */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* subtle shadow */
+    transition: 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
 h1, h2 {
@@ -104,9 +115,9 @@ h2 {
 
 <div class="container">
 
-<!-- Skyscanner Logo -->
+<!-- Skyscanner Logo with white version -->
 <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" onclick="trackClick()">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Skyscanner_logo_2016.svg" alt="Skyscanner Logo">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Skyscanner_logo_white.svg" alt="Skyscanner Logo">
 </a>
 
 <h1 id="mainTitle" onclick="trackClick()">🔥 Find The Cheapest Flights Today 🔥</h1>
