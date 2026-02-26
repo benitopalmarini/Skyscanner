@@ -41,7 +41,15 @@
 
   header p {
     font-size: 1.2rem;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     z-index: 1;
   }
@@ -57,13 +65,25 @@
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    position: relative;
-    z-index: 1;
   }
 
   .cta-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  }
+
+  .skyscanner-credit {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .skyscanner-credit img {
+    height: 24px;
+    margin-right: 6px;
   }
 
   section.features {
@@ -95,6 +115,8 @@
     font-size: 0.9rem;
     color: #ddd;
   }
+
+  footer a { color: #ddd; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -102,7 +124,15 @@
 <header>
   <h1 id="header-title">✈️ Find Cheap Flights Fast!</h1>
   <p id="header-desc">Compare hundreds of airlines instantly and book your next adventure with confidence.</p>
-  <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="cta-btn" id="cta-btn">Search Flights & Save</a>
+
+  <!-- CTA with Skyscanner logo -->
+  <div class="cta-container">
+    <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="cta-btn" id="cta-btn">Search Flights & Save</a>
+    <a href="https://www.skyscanner.net" target="_blank" class="skyscanner-credit">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Skyscanner_logo.png" alt="Skyscanner Logo">
+      Powered by Skyscanner
+    </a>
+  </div>
 </header>
 
 <section class="features">
@@ -122,14 +152,18 @@
     <h3 id="feature4-title">📱 Mobile Friendly</h3>
     <p id="feature4-desc">Works perfectly on any device — book flights on the go.</p>
   </div>
+  <div class="feature">
+    <h3>🛫 Powered by Skyscanner</h3>
+    <p>We use Skyscanner’s flight search engine to find you the best deals quickly and safely.</p>
+  </div>
 </section>
 
 <footer>
-  &copy; 2026 Travel Smart. All rights reserved.
+  &copy; 2026 Travel Smart. All rights reserved. <br>
+  Flight data powered by <a href="https://www.skyscanner.net" target="_blank">Skyscanner</a>
 </footer>
 
 <script>
-  // Translation data
   const translations = {
     en: {
       headerTitle: "✈️ Find Cheap Flights Fast!",
@@ -166,13 +200,11 @@
     }
   };
 
-  // Detect browser language
-  const lang = navigator.language.slice(0, 2);
+  const lang = navigator.language.slice(0,2);
   const texts = translations[lang] || translations['en'];
 
-  // Update page content
   document.addEventListener("DOMContentLoaded", () => {
-    document.documentElement.lang = lang; // Update HTML lang attribute
+    document.documentElement.lang = lang;
     document.getElementById("header-title").textContent = texts.headerTitle;
     document.getElementById("header-desc").textContent = texts.headerDesc;
     document.getElementById("cta-btn").textContent = texts.cta;
@@ -186,4 +218,3 @@
 
 </body>
 </html>
-
