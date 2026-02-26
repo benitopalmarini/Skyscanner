@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheap Flights & Amazing Travel Deals ✈️</title>
+<meta name="description" content="Compare hundreds of airlines instantly and get the cheapest flight deals for your next trip. Fast, safe, and easy.">
+<meta property="og:title" content="Cheap Flights & Amazing Travel Deals ✈️">
+<meta property="og:description" content="Compare hundreds of airlines instantly and get the cheapest flight deals for your next trip.">
+<meta property="og:image" content="https://source.unsplash.com/1200x630/?travel,airplane">
+<meta property="og:type" content="website">
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #00bfff, #1e90ff);
+    color: #fff;
+    text-align: center;
+  }
+
+  header {
+    padding: 80px 20px 60px;
+    background: url('https://source.unsplash.com/1600x800/?travel,plane') center/cover no-repeat;
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+  }
+
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #ffdd00;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 18px 50px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  }
+
+  section.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .feature {
+    flex: 1 1 250px;
+    margin: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+
+  .feature:hover { transform: translateY(-5px); }
+
+  .feature h3 { margin-top: 0; }
+
+  footer {
+    margin-top: 60px;
+    padding: 25px;
+    font-size: 0.9rem;
+    color: #ddd;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="header-title">✈️ Find Cheap Flights Fast!</h1>
+  <p id="header-desc">Compare hundreds of airlines instantly and book your next adventure with confidence.</p>
+  <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="cta-btn" id="cta-btn">Search Flights & Save</a>
+</header>
+
+<section class="features">
+  <div class="feature">
+    <h3 id="feature1-title">🔍 Compare Instantly</h3>
+    <p id="feature1-desc">Search multiple airlines and find the lowest prices in seconds.</p>
+  </div>
+  <div class="feature">
+    <h3 id="feature2-title">💸 Save Money</h3>
+    <p id="feature2-desc">Get the best deals and never overpay for flights again.</p>
+  </div>
+  <div class="feature">
+    <h3 id="feature3-title">🌍 Travel Anywhere</h3>
+    <p id="feature3-desc">Domestic or international, explore destinations worldwide.</p>
+  </div>
+  <div class="feature">
+    <h3 id="feature4-title">📱 Mobile Friendly</h3>
+    <p id="feature4-desc">Works perfectly on any device — book flights on the go.</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Travel Smart. All rights reserved.
+</footer>
+
+<script>
+  // Translation data
+  const translations = {
+    en: {
+      headerTitle: "✈️ Find Cheap Flights Fast!",
+      headerDesc: "Compare hundreds of airlines instantly and book your next adventure with confidence.",
+      cta: "Search Flights & Save",
+      features: [
+        {title: "🔍 Compare Instantly", desc: "Search multiple airlines and find the lowest prices in seconds."},
+        {title: "💸 Save Money", desc: "Get the best deals and never overpay for flights again."},
+        {title: "🌍 Travel Anywhere", desc: "Domestic or international, explore destinations worldwide."},
+        {title: "📱 Mobile Friendly", desc: "Works perfectly on any device — book flights on the go."}
+      ]
+    },
+    es: {
+      headerTitle: "✈️ ¡Encuentra vuelos baratos rápido!",
+      headerDesc: "Compara cientos de aerolíneas al instante y reserva tu próxima aventura con confianza.",
+      cta: "Buscar vuelos y ahorrar",
+      features: [
+        {title: "🔍 Comparar al instante", desc: "Busca múltiples aerolíneas y encuentra los precios más bajos en segundos."},
+        {title: "💸 Ahorrar dinero", desc: "Obtén las mejores ofertas y nunca pagues de más por tus vuelos."},
+        {title: "🌍 Viaja a cualquier lugar", desc: "Doméstico o internacional, explora destinos en todo el mundo."},
+        {title: "📱 Compatible con móviles", desc: "Funciona perfectamente en cualquier dispositivo — reserva vuelos sobre la marcha."}
+      ]
+    },
+    fr: {
+      headerTitle: "✈️ Trouvez des vols pas chers rapidement !",
+      headerDesc: "Comparez des centaines de compagnies aériennes instantanément et réservez votre prochaine aventure en toute confiance.",
+      cta: "Rechercher des vols et économiser",
+      features: [
+        {title: "🔍 Comparer instantanément", desc: "Recherchez plusieurs compagnies aériennes et trouvez les prix les plus bas en quelques secondes."},
+        {title: "💸 Économiser de l'argent", desc: "Obtenez les meilleures offres et ne payez jamais trop pour vos vols."},
+        {title: "🌍 Voyager partout", desc: "Domestique ou international, explorez des destinations dans le monde entier."},
+        {title: "📱 Compatible mobile", desc: "Fonctionne parfaitement sur tous les appareils — réservez des vols en déplacement."}
+      ]
+    }
+  };
+
+  // Detect browser language
+  const lang = navigator.language.slice(0, 2);
+  const texts = translations[lang] || translations['en'];
+
+  // Update page content
+  document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.lang = lang; // Update HTML lang attribute
+    document.getElementById("header-title").textContent = texts.headerTitle;
+    document.getElementById("header-desc").textContent = texts.headerDesc;
+    document.getElementById("cta-btn").textContent = texts.cta;
+
+    texts.features.forEach((feat, index) => {
+      document.getElementById(`feature${index+1}-title`).textContent = feat.title;
+      document.getElementById(`feature${index+1}-desc`).textContent = feat.desc;
+    });
+  });
+</script>
+
+</body>
+</html>
