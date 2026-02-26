@@ -2,158 +2,99 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Find The Cheapest Flights Here Online</title>
-<meta name="description" content="Find the cheapest flights online. Compare airlines instantly and book low fares today.">
-<meta name="viewport" content="width=1200">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyscanner Flight Search</title>
 <style>
-body {
+  body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0f62fe, #003c8f);
-    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  section {
+    padding: 40px 20px;
     text-align: center;
-}
-.container { padding: 50px 20px; }
-.top-date { font-size: 20px; margin-bottom: 10px; }
-.logo { font-size: 70px; font-weight: 900; color: #ffcc00; }
-h1 { font-size: 54px; margin: 20px 0; }
-.subtext { font-size: 22px; margin-bottom: 40px; }
-.cta-button {
-    display: inline-block;
-    padding: 22px 60px;
-    font-size: 30px;
-    font-weight: bold;
-    background-color: #ffcc00;
-    color: black;
-    text-decoration: none;
-    border-radius: 8px;
-    margin: 15px;
-    transition: 0.3s;
-}
-.cta-button:hover {
-    background-color: white;
-    transform: scale(1.08);
-}
-.counter-box {
-    margin-top: 40px;
-    font-size: 20px;
-    background: rgba(0,0,0,0.2);
-    padding: 15px;
-    border-radius: 6px;
-    display: inline-block;
-}
-.country-highlight {
-    color: #ffcc00;
-    font-weight: bold;
-}
+  }
+
+  h1, h2, p, button, img {
+    margin: 10px 0;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  h1:hover, h2:hover, p:hover, button:hover, img:hover {
+    transform: scale(1.05);
+  }
+
+  header {
+    background-color: #00a1e4;
+    color: white;
+  }
+
+  main {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+
+  footer {
+    background-color: #ffdf00;
+    color: #000;
+  }
+
+  .review {
+    font-style: italic;
+    font-size: 1.2em;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00a1e4;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background-color: #007bb5;
+  }
+
+  img.flight-img {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- Header Section -->
+<header>
+  <a href="https://www.skyscanner.net" target="_blank"><h1>Skyscanner Flights</h1></a>
+  <a href="https://www.skyscanner.net" target="_blank"><p>Search, Compare, and Save on Your Next Flight!</p></a>
+  <a href="https://www.skyscanner.net/flights" target="_blank"><button>Start Searching</button></a>
+</header>
 
-<div class="top-date" id="liveDate"></div>
+<!-- Main Section -->
+<main>
+  <a href="https://www.skyscanner.net/flights" target="_blank"><h2>Find the Best Deals</h2></a>
+  <a href="https://www.skyscanner.net/flights" target="_blank"><p>Compare thousands of airlines and travel sites in seconds.</p></a>
+  <a href="https://www.skyscanner.net/flights" target="_blank"><p>Discover flexible dates and the cheapest routes worldwide.</p></a>
+  <a href="https://www.skyscanner.net/flights" target="_blank">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Plane flying" class="flight-img">
+  </a>
+</main>
 
-<div class="logo">SKYSCANNER</div>
-
-<h1 id="headline">Find The Cheapest Flights Here Online</h1>
-
-<div class="subtext" id="subtext">
-Compare hundreds of airlines instantly and book the lowest fares available today.
-</div>
-
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
-   class="cta-button"
-   onclick="trackClick()"
-   id="cta1">
-SEARCH FLIGHTS NOW
-</a>
-
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
-   class="cta-button"
-   onclick="trackClick()"
-   id="cta2">
-VIEW TODAY'S BEST DEALS
-</a>
-
-<div class="counter-box">
-Today's Clicks: <span id="clickCount">0</span>
-</div>
-
-</div>
-
-<script>
-
-// -------- LIVE DATE --------
-const today = new Date();
-document.getElementById("liveDate").innerHTML =
-today.toLocaleDateString(navigator.language, {
-weekday: 'long',
-year: 'numeric',
-month: 'long',
-day: 'numeric'
-});
-
-// -------- COUNTRY DETECTION --------
-fetch("https://ipapi.co/json/")
-.then(response => response.json())
-.then(data => {
-
-let country = data.country_name;
-let currency = data.currency;
-
-if(country){
-
-document.getElementById("subtext").innerHTML =
-"Compare hundreds of airlines in <span class='country-highlight'>" +
-country +
-"</span> and book the lowest fares in " + currency + " today.";
-
-document.title = "Cheap Flights in " + country + " | Find The Cheapest Flights Here Online";
-
-let meta = document.querySelector("meta[name='description']");
-meta.setAttribute("content",
-"Find the cheapest flights in " + country +
-". Compare airlines and book low fares online today.");
-
-}
-
-});
-
-// -------- DAILY COUNTER --------
-function trackClick() {
-const now = new Date().toDateString();
-let storedDate = localStorage.getItem("clickDate");
-let count = localStorage.getItem("dailyClicks");
-
-if (storedDate !== now) {
-localStorage.setItem("clickDate", now);
-localStorage.setItem("dailyClicks", 0);
-count = 0;
-}
-
-count++;
-localStorage.setItem("dailyClicks", count);
-document.getElementById("clickCount").innerText = count;
-}
-
-window.onload = function() {
-const now = new Date().toDateString();
-let storedDate = localStorage.getItem("clickDate");
-let count = localStorage.getItem("dailyClicks");
-
-if (storedDate !== now) {
-localStorage.setItem("clickDate", now);
-localStorage.setItem("dailyClicks", 0);
-count = 0;
-}
-
-document.getElementById("clickCount").innerText = count || 0;
-}
-
-</script>
+<!-- Footer Section -->
+<footer>
+  <a href="https://www.skyscanner.net" target="_blank"><h2>Why Skyscanner?</h2></a>
+  <a href="https://www.skyscanner.net" target="_blank">
+    <p class="review">
+      "After trying multiple flight search engines, Skyscanner consistently finds the lowest prices, shows more options, and makes planning effortless. Truly the best way to book flights!"
+    </p>
+  </a>
+  <a href="https://www.skyscanner.net/flights" target="_blank"><button>Book Your Flight Now</button></a>
+</footer>
 
 </body>
 </html>
