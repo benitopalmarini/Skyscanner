@@ -1,107 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #f0f4f8;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Find Cheap Flights Now</title>
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 40px;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f62fe, #001d6c);
+    color: white;
+    text-align: center;
+}
 
-    /* Modal styles */
-    #exitModal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
+.container {
+    padding: 60px 20px;
+}
 
-    #exitModalContent {
-      background-color: #fff;
-      margin: 15% auto;
-      padding: 30px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 400px;
-      text-align: center;
-    }
+h1, h2 {
+    cursor: pointer;
+}
 
-    #exitModal button {
-      background-color: #457b9d;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
 
-    #exitModal button:hover {
-      background-color: #1d3557;
-    }
-  </style>
+h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.button {
+    display: inline-block;
+    padding: 20px 50px;
+    margin: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    background-color: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #ffaa00;
+    transform: scale(1.05);
+}
+
+.counter-box {
+    margin-top: 40px;
+    font-size: 24px;
+    background: rgba(255,255,255,0.15);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.date {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.destinations {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.destinations a {
+    display: block;
+    width: 180px;
+    height: 120px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #ffcc00;
+    color: #000;
+    border-radius: 12px;
+    line-height: 120px;
+    transition: 0.3s;
+}
+
+.destinations a:hover {
+    background-color: #ffaa00;
+    transform: scale(1.05);
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Colorful Headline -->
-  <h1 id="headline">Welcome to Our Amazing Site!</h1>
+<div class="container">
 
-  <p>Explore our content and don’t miss out!</p>
+<h1 id="mainTitle" onclick="trackClick()">🔥 Find The Cheapest Flights Today 🔥</h1>
+<h2 id="subTitle" onclick="trackClick()">Compare Hundreds of Airlines in Seconds</h2>
 
-  <!-- Exit-intent Modal -->
-  <div id="exitModal">
-    <div id="exitModalContent">
-      <h2>Wait! Before You Go…</h2>
-      <p>Come back and check out our latest content!</p>
-      <button onclick="closeModal()">Stay Here</button>
-    </div>
-  </div>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" 
+   class="button" 
+   onclick="trackClick()" 
+   target="_blank">
+   SEARCH FLIGHTS NOW
+</a>
 
-  <script>
-    // ---------- Colorful Headline ----------
-    const colors = ["#e63946", "#f1faee", "#a8dadc", "#457b9d", "#ffb703"];
-    const headline = document.getElementById("headline");
-    headline.innerHTML = headline.textContent
-      .split("")
-      .map((char, i) => `<span style="color:${colors[i % colors.length]}">${char}</span>`)
-      .join("");
+<br>
 
-    // ---------- Exit-Intent Popup ----------
-    const exitModal = document.getElementById("exitModal");
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" 
+   class="button" 
+   onclick="trackClick()" 
+   target="_blank">
+   GET EXCLUSIVE TRAVEL DEALS
+</a>
 
-    function closeModal() {
-      exitModal.style.display = "none";
+<div class="destinations" id="destinations">
+   <!-- Destinations will be populated dynamically -->
+</div>
+
+<div class="counter-box">
+    🚀 Total Clicks Today: <span id="clickCount">0</span>
+</div>
+
+<div class="date">
+    📅 Today’s Date: <span id="todayDate"></span>
+</div>
+
+</div>
+
+<script>
+// Click counter
+let clicks = 0;
+function trackClick() {
+    clicks++;
+    document.getElementById("clickCount").innerText = clicks;
+    window.open("https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885", "_blank");
+}
+
+// Set today's date
+document.getElementById("todayDate").innerText = new Date().toDateString();
+
+// Flight destinations
+const popularDestinations = [
+    "New York", "London", "Paris", "Dubai", "Tokyo",
+    "Bangkok", "Sydney", "Barcelona", "Rome", "Istanbul"
+];
+
+const destinationsContainer = document.getElementById("destinations");
+popularDestinations.forEach(dest => {
+    const a = document.createElement("a");
+    a.href = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+    a.target = "_blank";
+    a.onclick = trackClick;
+    a.innerText = dest;
+    destinationsContainer.appendChild(a);
+});
+
+// Language conversion based on browser
+const translations = {
+    "es": {
+        mainTitle: "🔥 Encuentra los vuelos más baratos hoy 🔥",
+        subTitle: "Compara cientos de aerolíneas en segundos",
+        button1: "BUSCAR VUELOS AHORA",
+        button2: "OBTENER OFERTAS EXCLUSIVAS"
+    },
+    "fr": {
+        mainTitle: "🔥 Trouvez les vols les moins chers aujourd'hui 🔥",
+        subTitle: "Comparez des centaines de compagnies aériennes en quelques secondes",
+        button1: "RECHERCHER DES VOLS",
+        button2: "OBTENIR DES OFFRES EXCLUSIVES"
+    },
+    "de": {
+        mainTitle: "🔥 Finde die günstigsten Flüge heute 🔥",
+        subTitle: "Vergleiche Hunderte von Airlines in Sekunden",
+        button1: "FLÜGE SUCHEN",
+        button2: "EXKLUSIVE ANGEBOTE"
     }
+};
 
-    document.addEventListener("mouseout", function(e) {
-      // Only trigger if mouse moves out of the top of the window
-      if (!e.toElement && !e.relatedTarget && e.clientY < 50) {
-        exitModal.style.display = "block";
-      }
-    });
-
-    // Optional: close modal if clicked outside the box
-    window.addEventListener("click", function(e) {
-      if (e.target == exitModal) {
-        exitModal.style.display = "none";
-      }
-    });
-  </script>
+const userLang = navigator.language.slice(0,2);
+if(translations[userLang]) {
+    document.getElementById("mainTitle").innerText = translations[userLang].mainTitle;
+    document.getElementById("subTitle").innerText = translations[userLang].subTitle;
+    document.querySelectorAll(".button")[0].innerText = translations[userLang].button1;
+    document.querySelectorAll(".button")[1].innerText = translations[userLang].button2;
+}
+</script>
 
 </body>
 </html>
